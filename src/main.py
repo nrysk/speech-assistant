@@ -41,33 +41,33 @@ def print_screen(status: str, recognized: str, sentences: list[str]):
 
 if __name__ == "__main__":
     recognized = ""
-    candidates = {}
+    sentences = []
 
     while True:
         # 入力待機
         print_screen(
             "Waiting for input...",
             recognized,
-            candidates.get("sentences", []),
+            sentences,
         )
         key = input()
         if key == "q":
             print_screen(
                 "Quitting...",
                 recognized,
-                candidates.get("sentences", []),
+                sentences,
             )
             break
         elif key == "r":
             recognized = ""
-            candidates = {}
+            sentences = []
             continue
 
         # 録音
         print_screen(
             "Recording...",
             recognized,
-            candidates.get("sentences", []),
+            sentences,
         )
         with sr.Microphone() as source:
             audio = recognizer.listen(source)
@@ -76,7 +76,7 @@ if __name__ == "__main__":
         print_screen(
             "Recognizing...",
             recognized,
-            candidates.get("sentences", []),
+            sentences,
         )
         try:
             recognized += recognizer.recognize_google(audio, language="ja-JP")
@@ -90,7 +90,7 @@ if __name__ == "__main__":
         print_screen(
             "Generating...",
             recognized,
-            candidates.get("sentences", []),
+            sentences,
         )
         response = model.generate_content(recognized)
-        candidates = json.loads(response.text[8:-5])
+        sente = json.loads(response.text[8:-5]).get("sentences", [])
