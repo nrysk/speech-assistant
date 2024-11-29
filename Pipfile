@@ -7,12 +7,7 @@ name = "pypi"
 start = "python src/main.py"
 
 [packages]
-numpy = "*"
-transformers = "*"
 speechrecognition = "*"
-pyaudio = "*"
-sounddevice = "*"
-openai-whisper = "*"
 google-generativeai = "*"
 python-dotenv = "*"
 rich = "*"

@@ -57,8 +57,10 @@ if __name__ == "__main__":
                 recognized,
                 candidates.get("sentences", []),
             )
+            break
         elif key == "r":
             recognized = ""
+            candidates = {}
             continue
 
         # 録音
